@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHP - Analytic Hierarchy Process | Pemilihan Mobil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Particle Background -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <h2 class="loader-text">Memuat Analisis AHP</h2>
+            <div class="loader-bar">
+                <div class="loader-bar-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fas fa-car-side"></i>
+                <span>AHP<span class="accent">Mobil</span></span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#about" class="nav-link"><i class="fas fa-info-circle"></i> Tentang AHP</a></li>
+                <li><a href="#kriteria" class="nav-link"><i class="fas fa-list-check"></i> Kriteria</a></li>
+                <li><a href="#perbandingan" class="nav-link"><i class="fas fa-scale-balanced"></i> Perbandingan</a></li>
+                <li><a href="#hasil" class="nav-link"><i class="fas fa-trophy"></i> Hasil</a></li>
+                <li><a href="#konsistensi" class="nav-link"><i class="fas fa-check-double"></i> Konsistensi</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge animate-on-scroll" data-animation="fadeInDown">
+                <i class="fas fa-chart-line"></i>
+                <span>Sistem Pendukung Keputusan</span>
+            </div>
+            <h1 class="hero-title animate-on-scroll" data-animation="fadeInUp">
+                <span class="line1">Analytic Hierarchy</span>
+                <span class="line2">Process</span>
+                <span class="line3">Studi Kasus Pemilihan <span class="highlight">Mobil</span></span>
+            </h1>
+            <p class="hero-subtitle animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                Menggunakan metode AHP untuk menentukan mobil terbaik berdasarkan kriteria
+                <strong>Style</strong>, <strong>Keandalan</strong>, dan <strong>Konsumsi BBM</strong>
+            </p>
+            <div class="hero-buttons animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                <a href="#hasil" class="btn btn-primary">
+                    <i class="fas fa-trophy"></i> Lihat Hasil
+                </a>
+                <a href="#about" class="btn btn-outline">
+                    <i class="fas fa-book-open"></i> Pelajari AHP
+                </a>
+            </div>
+            <div class="hero-stats animate-on-scroll" data-animation="fadeInUp" data-delay="600">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-car"></i></div>
+                    <div class="stat-number" data-count="4">0</div>
+                    <div class="stat-label">Alternatif</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="stat-number" data-count="3">0</div>
+                    <div class="stat-label">Kriteria</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-table"></i></div>
+                    <div class="stat-number" data-count="4">0</div>
+                    <div class="stat-label">Matriks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-number stat-percent" data-count="100">0</div>
+                    <div class="stat-label">Konsisten</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll ke bawah</span>
+        </div>
+    </section>
+
+    <!-- About AHP Section -->
+    <section id="about" class="section about-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll" data-animation="fadeInUp">
+                <span class="section-tag"><i class="fas fa-lightbulb"></i> Pengenalan</span>
+                <h2 class="section-title">Apa itu <span class="highlight">AHP</span>?</h2>
+                <p class="section-desc">Analytic Hierarchy Process (AHP) adalah metode pengambilan keputusan
+                    multi-kriteria yang dikembangkan oleh Thomas L. Saaty pada tahun 1980.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-card animate-on-scroll" data-animation="fadeInLeft">
+                    <div class="card-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <h3>Dekomposisi</h3>
+                    <p>Memecah masalah kompleks menjadi hierarki: tujuan, kriteria, dan alternatif.</p>
+                </div>
+                <div class="about-card animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    <div class="card-icon">
+                        <i class="fas fa-scale-balanced"></i>
+                    </div>
+                    <h3>Perbandingan Berpasangan</h3>
+                    <p>Membandingkan elemen secara berpasangan menggunakan skala Saaty 1-9.</p>
+                </div>
+                <div class="about-card animate-on-scroll" data-animation="fadeInRight" data-delay="200">
+                    <div class="card-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Sintesis Prioritas</h3>
+                    <p>Menghitung bobot prioritas menggunakan eigen vector dari matriks perbandingan.</p>
+                </div>
+                <div class="about-card animate-on-scroll" data-animation="fadeInLeft" data-delay="300">
+                    <div class="card-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3>Uji Konsistensi</h3>
+                    <p>Memastikan penilaian konsisten dengan Consistency Ratio (CR) ≤ 0.1.</p>
+                </div>
+                <div class="about-card animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                    <div class="card-icon">
+                        <i class="fas fa-ranking-star"></i>
+                    </div>
+                    <h3>Perangkingan</h3>
+                    <p>Menghasilkan ranking alternatif berdasarkan skor akhir yang terbobot.</p>
+                </div>
+                <div class="about-card animate-on-scroll" data-animation="fadeInRight" data-delay="500">
+                    <div class="card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Keputusan Optimal</h3>
+                    <p>Menentukan alternatif terbaik berdasarkan semua kriteria yang telah dinilai.</p>
+                </div>
+            </div>
+
+            <!-- AHP Hierarchy Diagram -->
+            <div class="hierarchy-diagram animate-on-scroll" data-animation="zoomIn" data-delay="300">
+                <h3 class="diagram-title"><i class="fas fa-project-diagram"></i> Struktur Hierarki AHP</h3>
+                <div class="hierarchy-tree">
+                    <div class="hierarchy-level level-goal">
+                        <div class="hierarchy-node goal-node">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Memilih Mobil Terbaik</span>
+                        </div>
+                    </div>
+                    <div class="hierarchy-connectors top-connectors">
+                        <div class="connector"></div>
+                        <div class="connector"></div>
+                        <div class="connector"></div>
+                    </div>
+                    <div class="hierarchy-level level-criteria">
+                        <div class="hierarchy-node criteria-node">
+                            <i class="fas fa-palette"></i>
+                            <span>Style (S)</span>
+                            <div class="node-weight">32.02%</div>
+                        </div>
+                        <div class="hierarchy-node criteria-node">
+                            <i class="fas fa-shield-halved"></i>
+                            <span>Keandalan (K)</span>
+                            <div class="node-weight">55.71%</div>
+                        </div>
+                        <div class="hierarchy-node criteria-node">
+                            <i class="fas fa-gas-pump"></i>
+                            <span>Kons. BBM (B)</span>
+                            <div class="node-weight">12.26%</div>
+                        </div>
+                    </div>
+                    <div class="hierarchy-connectors bottom-connectors">
+                        <div class="connector-group">
+                            <div class="connector"></div>
+                            <div class="connector"></div>
+                            <div class="connector"></div>
+                            <div class="connector"></div>
+                        </div>
+                    </div>
+                    <div class="hierarchy-level level-alternatives">
+                        <div class="hierarchy-node alt-node">
+                            <i class="fas fa-car"></i>
+                            <span>Avanza</span>
+                        </div>
+                        <div class="hierarchy-node alt-node">
+                            <i class="fas fa-car"></i>
+                            <span>Xenia</span>
+                        </div>
+                        <div class="hierarchy-node alt-node winner">
+                            <i class="fas fa-car"></i>
+                            <span>Ertiga</span>
+                            <div class="winner-badge"><i class="fas fa-crown"></i></div>
+                        </div>
+                        <div class="hierarchy-node alt-node">
+                            <i class="fas fa-car"></i>
+                            <span>Grand Livina</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skala Saaty -->
+            <div class="saaty-scale animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                <h3 class="diagram-title"><i class="fas fa-ruler-horizontal"></i> Skala Penilaian Saaty</h3>
+                <div class="scale-table-wrapper">
+                    <table class="scale-table">
+                        <thead>
+                            <tr>
+                                <th>Intensitas</th>
+                                <th>Definisi</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="scale-badge s1">1</span></td>
+                                <td>Sama Penting</td>
+                                <td>Kedua elemen sama pentingnya</td>
+                            </tr>
+                            <tr>
+                                <td><span class="scale-badge s3">3</span></td>
+                                <td>Sedikit Lebih Penting</td>
+                                <td>Satu elemen sedikit lebih penting dari yang lain</td>
+                            </tr>
+                            <tr>
+                                <td><span class="scale-badge s5">5</span></td>
+                                <td>Lebih Penting</td>
+                                <td>Satu elemen lebih penting dari yang lain</td>
+                            </tr>
+                            <tr>
+                                <td><span class="scale-badge s7">7</span></td>
+                                <td>Sangat Lebih Penting</td>
+                                <td>Satu elemen sangat lebih penting dari yang lain</td>
+                            </tr>
+                            <tr>
+                                <td><span class="scale-badge s9">9</span></td>
+                                <td>Mutlak Lebih Penting</td>
+                                <td>Satu elemen mutlak lebih penting dari yang lain</td>
+                            </tr>
+                            <tr>
+                                <td><span class="scale-badge s2">2,4,6,8</span></td>
+                                <td>Nilai Tengah</td>
+                                <td>Nilai antara dua penilaian yang berdekatan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kriteria Section -->
+    <section id="kriteria" class="section kriteria-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll" data-animation="fadeInUp">
+                <span class="section-tag"><i class="fas fa-list-check"></i> Langkah 1</span>
+                <h2 class="section-title">Perbandingan <span class="highlight">Kriteria</span></h2>
+                <p class="section-desc">Matriks perbandingan berpasangan antar kriteria: Style (S), Keandalan (K), dan
+                    Konsumsi BBM (B)</p>
+            </div>
+
+            <div class="matrix-container">
+                <!-- Original Matrix -->
+                <div class="matrix-card animate-on-scroll" data-animation="fadeInLeft">
+                    <div class="matrix-header">
+                        <h3><i class="fas fa-table"></i> Matriks Perbandingan Berpasangan</h3>
+                        <span class="matrix-badge">3×3</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table matrix-table">
+                            <thead>
+                                <tr>
+                                    <th>Kriteria</th>
+                                    <th>Style (S)</th>
+                                    <th>Keandalan (K)</th>
+                                    <th>Kons. BBM (B)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-header">Style (S)</td>
+                                    <td class="diagonal">1</td>
+                                    <td class="reciprocal">1/2</td>
+                                    <td class="input-val">3</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">Keandalan (K)</td>
+                                    <td class="input-val">2</td>
+                                    <td class="diagonal">1</td>
+                                    <td class="input-val">4</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">Kons. BBM (B)</td>
+                                    <td class="reciprocal">1/3</td>
+                                    <td class="reciprocal">1/4</td>
+                                    <td class="diagonal">1</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td>TOTAL</td>
+                                    <td>3.333</td>
+                                    <td>1.750</td>
+                                    <td>8.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Normalized Matrix -->
+                <div class="matrix-card animate-on-scroll" data-animation="fadeInRight">
+                    <div class="matrix-header">
+                        <h3><i class="fas fa-percentage"></i> Matriks Ternormalisasi & Bobot</h3>
+                        <span class="matrix-badge">Normalisasi</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table norm-table">
+                            <thead>
+                                <tr>
+                                    <th>Kriteria</th>
+                                    <th>S</th>
+                                    <th>K</th>
+                                    <th>B</th>
+                                    <th>Vektor</th>
+                                    <th>Bobot</th>
+                                    <th>Eigen</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="row-header">S</td>
+                                    <td>0.3000</td>
+                                    <td>0.2857</td>
+                                    <td>0.3750</td>
+                                    <td>0.9607</td>
+                                    <td class="bobot-val">0.3202</td>
+                                    <td>1.0675</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">K</td>
+                                    <td>0.6000</td>
+                                    <td>0.5714</td>
+                                    <td>0.5000</td>
+                                    <td>1.6714</td>
+                                    <td class="bobot-val">0.5571</td>
+                                    <td>0.9750</td>
+                                </tr>
+                                <tr>
+                                    <td class="row-header">B</td>
+                                    <td>0.1000</td>
+                                    <td>0.1429</td>
+                                    <td>0.1250</td>
+                                    <td>0.3679</td>
+                                    <td class="bobot-val">0.1226</td>
+                                    <td>0.9810</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td>TOTAL</td>
+                                    <td>1.0000</td>
+                                    <td>1.0000</td>
+                                    <td>1.0000</td>
+                                    <td>—</td>
+                                    <td>—</td>
+                                    <td>3.0234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="consistency-mini">
+                        <span class="ci-tag">CI = 0.0117</span>
+                        <span class="cr-tag">CR = 0.0202</span>
+                        <span class="status-tag consistent"><i class="fas fa-check-circle"></i> Konsisten</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bobot Kriteria Chart -->
+            <div class="chart-section animate-on-scroll" data-animation="zoomIn" data-delay="200">
+                <h3 class="chart-title"><i class="fas fa-chart-pie"></i> Bobot Prioritas Kriteria</h3>
+                <div class="chart-container">
+                    <div class="donut-chart-wrapper">
+                        <canvas id="criteriaChart"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            </div>
+                            <div class="legend-info">
+                                <span class="legend-label">Style (S)</span>
+                                <span class="legend-value">32.02%</span>
+                            </div>
+                            <div class="legend-bar">
+                                <div class="legend-bar-fill"
+                                    style="width: 32.02%; background: linear-gradient(90deg, #667eea, #764ba2);"></div>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            </div>
+                            <div class="legend-info">
+                                <span class="legend-label">Keandalan (K)</span>
+                                <span class="legend-value">55.71%</span>
+                            </div>
+                            <div class="legend-bar">
+                                <div class="legend-bar-fill"
+                                    style="width: 55.71%; background: linear-gradient(90deg, #f093fb, #f5576c);"></div>
+                            </div>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                            </div>
+                            <div class="legend-info">
+                                <span class="legend-label">Konsumsi BBM (B)</span>
+                                <span class="legend-value">12.26%</span>
+                            </div>
+                            <div class="legend-bar">
+                                <div class="legend-bar-fill"
+                                    style="width: 12.26%; background: linear-gradient(90deg, #4facfe, #00f2fe);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perbandingan Alternatif Section -->
+    <section id="perbandingan" class="section perbandingan-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll" data-animation="fadeInUp">
+                <span class="section-tag"><i class="fas fa-scale-balanced"></i> Langkah 2-4</span>
+                <h2 class="section-title">Perbandingan <span class="highlight">Alternatif</span></h2>
+                <p class="section-desc">Matriks perbandingan berpasangan alternatif mobil terhadap masing-masing
+                    kriteria</p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tab-navigation animate-on-scroll" data-animation="fadeInUp">
+                <button class="tab-btn active" data-tab="style">
+                    <i class="fas fa-palette"></i>
+                    <span>Style</span>
+                </button>
+                <button class="tab-btn" data-tab="keandalan">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>Keandalan</span>
+                </button>
+                <button class="tab-btn" data-tab="bbm">
+                    <i class="fas fa-gas-pump"></i>
+                    <span>Konsumsi BBM</span>
+                </button>
+            </div>
+
+            <!-- Tab: Style -->
+            <div class="tab-content active" id="tab-style">
+                <div class="matrix-container">
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInLeft">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-palette"></i> Matriks Style</h3>
+                            <span class="matrix-badge">4×4</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Style</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>Grand Livina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">2</td>
+                                        <td class="reciprocal">1/3</td>
+                                        <td class="reciprocal">1/4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td class="reciprocal">1/2</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="reciprocal">1/4</td>
+                                        <td class="reciprocal">1/5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td class="input-val">3</td>
+                                        <td class="input-val">4</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td class="input-val">4</td>
+                                        <td class="input-val">5</td>
+                                        <td class="reciprocal">1/2</td>
+                                        <td class="diagonal">1</td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td>TOTAL</td>
+                                        <td>8.500</td>
+                                        <td>12.000</td>
+                                        <td>2.083</td>
+                                        <td>3.450</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInRight">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-percentage"></i> Normalisasi & Bobot Style</h3>
+                            <span class="matrix-badge">Normalisasi</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table norm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Style</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>G.Livina</th>
+                                        <th>Bobot</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td>0.1176</td>
+                                        <td>0.1667</td>
+                                        <td>0.1600</td>
+                                        <td>0.0725</td>
+                                        <td class="bobot-val">0.1292</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td>0.0588</td>
+                                        <td>0.0833</td>
+                                        <td>0.1200</td>
+                                        <td>0.0580</td>
+                                        <td class="bobot-val">0.0800</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td>0.3529</td>
+                                        <td>0.3333</td>
+                                        <td>0.4800</td>
+                                        <td>0.5797</td>
+                                        <td class="bobot-val">0.4365</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td>0.4706</td>
+                                        <td>0.4167</td>
+                                        <td>0.2400</td>
+                                        <td>0.2899</td>
+                                        <td class="bobot-val">0.3543</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="consistency-mini">
+                            <span class="ci-tag">CI = 0.0634</span>
+                            <span class="cr-tag">CR = 0.0704</span>
+                            <span class="status-tag consistent"><i class="fas fa-check-circle"></i> Konsisten</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Keandalan -->
+            <div class="tab-content" id="tab-keandalan">
+                <div class="matrix-container">
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInLeft">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-shield-halved"></i> Matriks Keandalan</h3>
+                            <span class="matrix-badge">4×4</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Keandalan</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>Grand Livina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">2</td>
+                                        <td class="reciprocal">1/4</td>
+                                        <td class="reciprocal">1/3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td class="reciprocal">1/2</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="reciprocal">1/5</td>
+                                        <td class="reciprocal">1/4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td class="input-val">4</td>
+                                        <td class="input-val">5</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td class="input-val">3</td>
+                                        <td class="input-val">4</td>
+                                        <td class="reciprocal">1/3</td>
+                                        <td class="diagonal">1</td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td>TOTAL</td>
+                                        <td>8.500</td>
+                                        <td>12.000</td>
+                                        <td>1.783</td>
+                                        <td>4.583</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInRight">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-percentage"></i> Normalisasi & Bobot Keandalan</h3>
+                            <span class="matrix-badge">Normalisasi</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table norm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Keandalan</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>G.Livina</th>
+                                        <th>Bobot</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td>0.1176</td>
+                                        <td>0.1667</td>
+                                        <td>0.1402</td>
+                                        <td>0.0727</td>
+                                        <td class="bobot-val">0.1243</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td>0.0588</td>
+                                        <td>0.0833</td>
+                                        <td>0.1121</td>
+                                        <td>0.0545</td>
+                                        <td class="bobot-val">0.0772</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td>0.4706</td>
+                                        <td>0.4167</td>
+                                        <td>0.5607</td>
+                                        <td>0.6545</td>
+                                        <td class="bobot-val">0.5256</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td>0.3529</td>
+                                        <td>0.3333</td>
+                                        <td>0.1869</td>
+                                        <td>0.2182</td>
+                                        <td class="bobot-val">0.2728</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="consistency-mini">
+                            <span class="ci-tag">CI = 0.0570</span>
+                            <span class="cr-tag">CR = 0.0634</span>
+                            <span class="status-tag consistent"><i class="fas fa-check-circle"></i> Konsisten</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: BBM -->
+            <div class="tab-content" id="tab-bbm">
+                <div class="matrix-container">
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInLeft">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-gas-pump"></i> Matriks Konsumsi BBM</h3>
+                            <span class="matrix-badge">4×4</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table matrix-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kons. BBM</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>Grand Livina</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">2</td>
+                                        <td class="reciprocal">1/2</td>
+                                        <td class="input-val">4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td class="reciprocal">1/2</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="reciprocal">2/3</td>
+                                        <td class="input-val">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td class="input-val">2</td>
+                                        <td class="input-val">3/2</td>
+                                        <td class="diagonal">1</td>
+                                        <td class="input-val">4</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td class="reciprocal">1/4</td>
+                                        <td class="reciprocal">1/3</td>
+                                        <td class="reciprocal">1/4</td>
+                                        <td class="diagonal">1</td>
+                                    </tr>
+                                    <tr class="total-row">
+                                        <td>TOTAL</td>
+                                        <td>3.750</td>
+                                        <td>4.833</td>
+                                        <td>2.417</td>
+                                        <td>12.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="matrix-card animate-on-scroll" data-animation="fadeInRight">
+                        <div class="matrix-header">
+                            <h3><i class="fas fa-percentage"></i> Normalisasi & Bobot BBM</h3>
+                            <span class="matrix-badge">Normalisasi</span>
+                        </div>
+                        <div class="table-wrapper">
+                            <table class="data-table norm-table">
+                                <thead>
+                                    <tr>
+                                        <th>Kons. BBM</th>
+                                        <th>Avanza</th>
+                                        <th>Xenia</th>
+                                        <th>Ertiga</th>
+                                        <th>G.Livina</th>
+                                        <th>Bobot</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="row-header">Avanza</td>
+                                        <td>0.2667</td>
+                                        <td>0.4138</td>
+                                        <td>0.2069</td>
+                                        <td>0.3333</td>
+                                        <td class="bobot-val">0.3052</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Xenia</td>
+                                        <td>0.1333</td>
+                                        <td>0.2069</td>
+                                        <td>0.2759</td>
+                                        <td>0.2500</td>
+                                        <td class="bobot-val">0.2165</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Ertiga</td>
+                                        <td>0.5333</td>
+                                        <td>0.3103</td>
+                                        <td>0.4138</td>
+                                        <td>0.3333</td>
+                                        <td class="bobot-val">0.3977</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="row-header">Grand Livina</td>
+                                        <td>0.0667</td>
+                                        <td>0.0690</td>
+                                        <td>0.1034</td>
+                                        <td>0.0833</td>
+                                        <td class="bobot-val">0.0806</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="consistency-mini">
+                            <span class="ci-tag">CI = 0.0398</span>
+                            <span class="cr-tag">CR = 0.0442</span>
+                            <span class="status-tag consistent"><i class="fas fa-check-circle"></i> Konsisten</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hasil Section -->
+    <section id="hasil" class="section hasil-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll" data-animation="fadeInUp">
+                <span class="section-tag"><i class="fas fa-trophy"></i> Langkah 5</span>
+                <h2 class="section-title">Hasil <span class="highlight">Perangkingan</span></h2>
+                <p class="section-desc">Skor akhir dan perangkingan alternatif mobil berdasarkan metode AHP</p>
+            </div>
+
+            <!-- Score Matrix -->
+            <div class="matrix-card full-width animate-on-scroll" data-animation="fadeInUp">
+                <div class="matrix-header">
+                    <h3><i class="fas fa-calculator"></i> Matriks Skor Akhir</h3>
+                    <span class="matrix-badge">Sintesis</span>
+                </div>
+                <div class="table-wrapper">
+                    <table class="data-table score-table">
+                        <thead>
+                            <tr>
+                                <th>Alternatif</th>
+                                <th>Style × 0.3202</th>
+                                <th>Keandalan × 0.5571</th>
+                                <th>BBM × 0.1226</th>
+                                <th>Total Skor</th>
+                                <th>Ranking</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="row-header">Avanza</td>
+                                <td>0.0414</td>
+                                <td>0.0693</td>
+                                <td>0.0374</td>
+                                <td class="score-val">0.1480</td>
+                                <td><span class="rank-badge rank-3">3</span></td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Xenia</td>
+                                <td>0.0256</td>
+                                <td>0.0430</td>
+                                <td>0.0265</td>
+                                <td class="score-val">0.0952</td>
+                                <td><span class="rank-badge rank-4">4</span></td>
+                            </tr>
+                            <tr class="winner-row">
+                                <td class="row-header"><i class="fas fa-crown"></i> Ertiga</td>
+                                <td>0.1398</td>
+                                <td>0.2929</td>
+                                <td>0.0488</td>
+                                <td class="score-val winner-score">0.4814</td>
+                                <td><span class="rank-badge rank-1"><i class="fas fa-trophy"></i> 1</span></td>
+                            </tr>
+                            <tr>
+                                <td class="row-header">Grand Livina</td>
+                                <td>0.1135</td>
+                                <td>0.1520</td>
+                                <td>0.0099</td>
+                                <td class="score-val">0.2753</td>
+                                <td><span class="rank-badge rank-2">2</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Ranking Cards -->
+            <div class="ranking-showcase">
+                <div class="ranking-card rank-2-card animate-on-scroll" data-animation="fadeInLeft" data-delay="200">
+                    <div class="rank-medal">
+                        <i class="fas fa-medal"></i>
+                        <span>2</span>
+                    </div>
+                    <div class="rank-car-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Grand Livina</h3>
+                    <div class="rank-score">
+                        <div class="score-circle" data-score="27.53">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45" />
+                                <circle class="progress" cx="50" cy="50" r="45" style="--score: 27.53" />
+                            </svg>
+                            <span class="score-text">27.53%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ranking-card rank-1-card animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    <div class="winner-crown"><i class="fas fa-crown"></i></div>
+                    <div class="rank-medal gold">
+                        <i class="fas fa-trophy"></i>
+                        <span>1</span>
+                    </div>
+                    <div class="rank-car-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Ertiga</h3>
+                    <div class="rank-score">
+                        <div class="score-circle" data-score="48.14">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45" />
+                                <circle class="progress gold" cx="50" cy="50" r="45" style="--score: 48.14" />
+                            </svg>
+                            <span class="score-text">48.14%</span>
+                        </div>
+                    </div>
+                    <div class="winner-label">🏆 Mobil Terpilih</div>
+                </div>
+
+                <div class="ranking-card rank-3-card animate-on-scroll" data-animation="fadeInRight" data-delay="200">
+                    <div class="rank-medal">
+                        <i class="fas fa-medal"></i>
+                        <span>3</span>
+                    </div>
+                    <div class="rank-car-icon"><i class="fas fa-car-side"></i></div>
+                    <h3>Avanza</h3>
+                    <div class="rank-score">
+                        <div class="score-circle" data-score="14.80">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="bg" cx="50" cy="50" r="45" />
+                                <circle class="progress" cx="50" cy="50" r="45" style="--score: 14.80" />
+                            </svg>
+                            <span class="score-text">14.80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4th place -->
+            <div class="ranking-card-small animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                <span class="rank-badge rank-4">4</span>
+                <i class="fas fa-car"></i>
+                <span class="rank-name">Xenia</span>
+                <span class="rank-score-small">9.52%</span>
+            </div>
+
+            <!-- Bar Chart -->
+            <div class="chart-section animate-on-scroll" data-animation="zoomIn" data-delay="300">
+                <h3 class="chart-title"><i class="fas fa-chart-bar"></i> Perbandingan Skor Akhir</h3>
+                <div class="bar-chart-container">
+                    <canvas id="rankingChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="chart-section animate-on-scroll" data-animation="zoomIn" data-delay="400">
+                <h3 class="chart-title"><i class="fas fa-chart-radar"></i> Perbandingan Multi-Kriteria</h3>
+                <div class="radar-chart-container">
+                    <canvas id="radarChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Konsistensi Section -->
+    <section id="konsistensi" class="section konsistensi-section">
+        <div class="container">
+            <div class="section-header animate-on-scroll" data-animation="fadeInUp">
+                <span class="section-tag"><i class="fas fa-check-double"></i> Langkah 6</span>
+                <h2 class="section-title">Uji <span class="highlight">Konsistensi</span></h2>
+                <p class="section-desc">Ringkasan uji konsistensi seluruh matriks perbandingan (CR ≤ 0.1 = Konsisten)
+                </p>
+            </div>
+
+            <div class="consistency-grid">
+                <div class="consistency-card animate-on-scroll" data-animation="fadeInUp" data-delay="0">
+                    <div class="consistency-icon"><i class="fas fa-list-check"></i></div>
+                    <h3>Kriteria</h3>
+                    <div class="consistency-details">
+                        <div class="detail-row">
+                            <span>Eigen Value</span>
+                            <span class="detail-val">3.0234</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CI</span>
+                            <span class="detail-val">0.0117</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CR</span>
+                            <span class="detail-val highlight-cr">0.0202</span>
+                        </div>
+                    </div>
+                    <div class="consistency-meter">
+                        <div class="meter-bar" style="--cr: 0.0202;"></div>
+                        <div class="meter-threshold"></div>
+                    </div>
+                    <div class="consistency-status consistent">
+                        <i class="fas fa-check-circle"></i> Konsisten
+                    </div>
+                </div>
+
+                <div class="consistency-card animate-on-scroll" data-animation="fadeInUp" data-delay="100">
+                    <div class="consistency-icon"><i class="fas fa-palette"></i></div>
+                    <h3>Style</h3>
+                    <div class="consistency-details">
+                        <div class="detail-row">
+                            <span>Eigen Value</span>
+                            <span class="detail-val">4.1902</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CI</span>
+                            <span class="detail-val">0.0634</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CR</span>
+                            <span class="detail-val highlight-cr">0.0704</span>
+                        </div>
+                    </div>
+                    <div class="consistency-meter">
+                        <div class="meter-bar" style="--cr: 0.0704;"></div>
+                        <div class="meter-threshold"></div>
+                    </div>
+                    <div class="consistency-status consistent">
+                        <i class="fas fa-check-circle"></i> Konsisten
+                    </div>
+                </div>
+
+                <div class="consistency-card animate-on-scroll" data-animation="fadeInUp" data-delay="200">
+                    <div class="consistency-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Keandalan</h3>
+                    <div class="consistency-details">
+                        <div class="detail-row">
+                            <span>Eigen Value</span>
+                            <span class="detail-val">4.1711</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CI</span>
+                            <span class="detail-val">0.0570</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CR</span>
+                            <span class="detail-val highlight-cr">0.0634</span>
+                        </div>
+                    </div>
+                    <div class="consistency-meter">
+                        <div class="meter-bar" style="--cr: 0.0634;"></div>
+                        <div class="meter-threshold"></div>
+                    </div>
+                    <div class="consistency-status consistent">
+                        <i class="fas fa-check-circle"></i> Konsisten
+                    </div>
+                </div>
+
+                <div class="consistency-card animate-on-scroll" data-animation="fadeInUp" data-delay="300">
+                    <div class="consistency-icon"><i class="fas fa-gas-pump"></i></div>
+                    <h3>Konsumsi BBM</h3>
+                    <div class="consistency-details">
+                        <div class="detail-row">
+                            <span>Eigen Value</span>
+                            <span class="detail-val">4.1193</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CI</span>
+                            <span class="detail-val">0.0398</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>CR</span>
+                            <span class="detail-val highlight-cr">0.0442</span>
+                        </div>
+                    </div>
+                    <div class="consistency-meter">
+                        <div class="meter-bar" style="--cr: 0.0442;"></div>
+                        <div class="meter-threshold"></div>
+                    </div>
+                    <div class="consistency-status consistent">
+                        <i class="fas fa-check-circle"></i> Konsisten
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box animate-on-scroll" data-animation="fadeInUp" data-delay="400">
+                <div class="info-icon"><i class="fas fa-circle-info"></i></div>
+                <div class="info-content">
+                    <h4>Keterangan Rumus</h4>
+                    <ul>
+                        <li><strong>CI (Consistency Index)</strong> = (λ<sub>max</sub> - n) / (n - 1)</li>
+                        <li><strong>CR (Consistency Ratio)</strong> = CI / RI</li>
+                        <li><strong>RI (Random Index)</strong>: n=3 → 0.58 ; n=4 → 0.90</li>
+                        <li>Matriks <strong>konsisten</strong> jika CR ≤ 0.1 (10%)</li>
+                    </ul>
+                    <p class="info-note">
+                        <i class="fas fa-pencil"></i> <strong>Catatan:</strong> Nilai perbandingan Style antara Ertiga :
+                        Xenia diubah dari 2 menjadi 4 agar matriks Style konsisten (CR ≤ 0.1).
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="section conclusion-section">
+        <div class="container">
+            <div class="conclusion-card animate-on-scroll" data-animation="zoomIn">
+                <div class="conclusion-bg"></div>
+                <div class="conclusion-content">
+                    <div class="conclusion-icon">
+                        <i class="fas fa-flag-checkered"></i>
+                    </div>
+                    <h2>Kesimpulan</h2>
+                    <p class="conclusion-text">
+                        Berdasarkan analisis AHP dengan 3 kriteria (Style, Keandalan, Konsumsi BBM)
+                        dan 4 alternatif mobil, diperoleh hasil bahwa:
+                    </p>
+                    <div class="winner-showcase">
+                        <div class="winner-icon"><i class="fas fa-car-side"></i></div>
+                        <h3 class="winner-name">Suzuki Ertiga</h3>
+                        <p class="winner-score-text">Skor: <strong>0.4814</strong> (48.14%)</p>
+                        <p class="winner-desc">Adalah mobil terbaik untuk dibeli berdasarkan metode AHP</p>
+                    </div>
+                    <div class="conclusion-ranking">
+                        <div class="mini-rank"><span class="mini-badge gold">1</span> Ertiga (48.14%)</div>
+                        <div class="mini-rank"><span class="mini-badge silver">2</span> Grand Livina (27.53%)</div>
+                        <div class="mini-rank"><span class="mini-badge bronze">3</span> Avanza (14.80%)</div>
+                        <div class="mini-rank"><span class="mini-badge">4</span> Xenia (9.52%)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-car-side"></i>
+                    <span>AHP<span class="accent">Mobil</span></span>
+                </div>
+                <p class="footer-text">
+                    Analytic Hierarchy Process — Studi Kasus Pemilihan Mobil<br>
+                    Dibuat dengan <i class="fas fa-heart" style="color: #f5576c;"></i> menggunakan HTML, CSS &
+                    JavaScript
+                </p>
+                <div class="footer-links">
+                    <a href="#hero"><i class="fas fa-home"></i></a>
+                    <a href="#about"><i class="fas fa-info-circle"></i></a>
+                    <a href="#kriteria"><i class="fas fa-list-check"></i></a>
+                    <a href="#hasil"><i class="fas fa-trophy"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AHP Mobil Analysis. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" title="Kembali ke atas">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
